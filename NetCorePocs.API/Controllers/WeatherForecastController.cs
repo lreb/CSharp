@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,14 @@ namespace NetCorePocs.API.Controllers
 		[HttpGet]
 		public IEnumerable<WeatherForecast> Get()
 		{
-			_logger.LogInformation("Information data");
-			_logger.LogDebug("Devug data");
-			_logger.LogWarning("Warning data");
-			_logger.LogTrace("Trace data");
-			_logger.LogError("Error data");
-			_logger.LogCritical("Critical data");
+			_logger.LogInformation("Executing WeatherForecast action result");
+			//_logger.LogInformation("Module: {Module}, Class: {Class}, Mehotd: {Method} Information data: ", "Weather" ,typeof(WeatherForecastController), typeof(WeatherForecastController));
+			_logger.LogDebug("Debug WeatherForecast action");
+			_logger.LogWarning("Warning on WeatherForecast");
+			_logger.LogTrace("Trace data on WeatherForecast: {value}", 1987);
+			_logger.LogError("Error on WeatherForecast; something fails");
+			_logger.LogCritical("Help in WeatherForecast hurry up");
+
 			var rng = new Random();
 			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
 			{
